@@ -1,0 +1,9 @@
+# 自動生成物を除外
+node_modules/
+main/
+build_develop*
+build_release*
+index.html
+licenses/*
+!extractLicenses.js
+saves

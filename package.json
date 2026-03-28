@@ -1,0 +1,100 @@
+{
+  "name": "usaprince",
+  "version": "1.0.0",
+  "description": "game",
+  "license": "ISC",
+  "author": "hashsoft",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "build": "run-s clean release-build generate-licenses",
+    "release-build": "webpack --mode=production --env buildMain=true",
+    "debug-build": "webpack --mode=development --env buildMain=true",
+    "clean": "rimraf js",
+    "generate-licenses": "run-s licenses-json licenses-text",
+    "licenses-json": "license-checker --production --json > ./licenses/licenses.json",
+    "licenses-text": "node ./licenses/extractLicenses.js ./licenses/licenses.json > ./licenses/LICENSE.packages.txt",
+    "potable": "electron-builder --win --x64 --dir",
+    "potableDev": "electron-builder --win --x64 --dir -c builder-develop-config.yaml"
+  },
+  "build": {
+    "appId": "com.usa-prince.app",
+    "productName": "うさぎの王子さま",
+    "directories": {
+      "output": "build_release"
+    },
+    "files": [
+      {
+        "from": "main",
+        "to": "./",
+        "filter": [
+          "**/index.js",
+          "**/preload.js"
+        ]
+      },
+      {
+        "from": "UsaPrinceJs",
+        "to": "./",
+        "filter": [
+          "assets",
+          "js/**/*.js",
+          "js_config/*.js",
+          "index.html",
+          "index.css",
+          "index_config.html",
+          "index_config.css",
+          "package.json"
+        ]
+      },
+      "assets",
+      "js/**/*.js",
+      "js_config/*.js",
+      "index.html",
+      "index.css",
+      "index_config.html",
+      "index_config.css",
+      "package.json",
+      "!node_modules"
+    ],
+    "extraFiles": [
+      {
+        "from": "UsaPrinceJs/licenses/LICENSE.packages.txt",
+        "to": "LICENSE.game.packages.txt"
+      },
+      {
+        "from": "licenses/LICENSE.packages.txt",
+        "to": "LICENSE.electron.packages.txt"
+      },
+      "説明書.txt"
+    ],
+    "mac": {
+      "target": [
+        "dmg"
+      ]
+    },
+    "win": {
+      "target": "nsis",
+      "icon": "up_icon.png"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    }
+  },
+  "devDependencies": {
+    "babel-loader": "^10.0.0",
+    "copy-webpack-plugin": "^13.0.0",
+    "electron": "^35.0.3",
+    "electron-builder": "^25.1.8",
+    "html-webpack-plugin": "^5.6.3",
+    "license-checker": "^25.0.1",
+    "npm-run-all2": "^7.0.2",
+    "rimraf": "^6.0.1",
+    "webpack": "^5.98.0",
+    "webpack-cli": "^6.0.1",
+    "webpack-dev-server": "^5.2.0"
+  },
+  "dependencies": {
+    "electron-log": "^5.3.2"
+  }
+}

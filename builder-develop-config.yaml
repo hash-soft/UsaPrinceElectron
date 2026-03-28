@@ -1,0 +1,48 @@
+directories:
+  output: build_develop
+appId: com.usa-prince.app
+productName: うさぎの王子さま開
+asar: false
+files:
+  - from: main
+    to: ./
+    filter:
+      - '**/index.js'
+      - '**/preload.js'
+  - from: UsaPrinceJs
+    to: ./
+    filter:
+      - assets
+      - js
+      - js_config
+      - icons
+      - index.html
+      - index_test.html
+      - index.css
+      - index_config.html
+      - index_config.css
+      - package.json
+  - filter:
+      - assets
+      - js
+      - js_config
+      - icons
+      - index.html
+      - index_test.html
+      - index.css
+      - index_config.html
+      - index_config.css
+      - package.json
+      - '!node_modules'
+extraFiles:
+  - saves
+  - DebugMode.bat
+mac:
+  target:
+    - dmg
+win:
+  target: nsis
+  icon: up_icon.png
+nsis:
+  oneClick: false
+  allowToChangeInstallationDirectory: true

@@ -1,0 +1,3 @@
+[submodule "UsaPrinceJs"]
+	path = UsaPrinceJs
+	url = https://github.com/hash-soft/UsaPrinceJs.git
