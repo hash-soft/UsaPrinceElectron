@@ -34,7 +34,9 @@ const vscodeLaunch = launchArgs.some((arg) => arg === 'vscode');
 })();
 
 const startFilename = debugLaunch ? 'index_test.html' : 'index.html';
-const htmlRootDir = vscodeLaunch ? path.join(__dirname, 'UsaPrinceNpm') : __dirname;
+const htmlRootDir = vscodeLaunch
+  ? path.join(__dirname, 'UsaPrinceJs')
+  : __dirname;
 const basePath = app.isPackaged ? path.dirname(process.argv[0]) : htmlRootDir;
 const iconPath = path.join(htmlRootDir, 'assets/icons');
 
@@ -262,7 +264,7 @@ ipcMain.on('getSaveFileList', (event, saveFileFormat, maxText) => {
   event.sender.send(
     'getSaveFileListResult',
     'success',
-    JSON.stringify(saveFileList)
+    JSON.stringify(saveFileList),
   );
 });
 
@@ -287,7 +289,7 @@ ipcMain.on('getSuspendFileList', (event, suspendFileFormat, maxText) => {
   event.sender.send(
     'getSuspendFileListResult',
     'success',
-    JSON.stringify(suspendFileList)
+    JSON.stringify(suspendFileList),
   );
 });
 
@@ -371,7 +373,7 @@ ipcMain.on('copyFile', (event, srcName, destName) => {
   try {
     fs.copyFileSync(
       path.join(basePath, srcName),
-      path.join(basePath, destName)
+      path.join(basePath, destName),
     );
     event.sender.send('copyResult', 'success', 'ok');
   } catch (e) {
