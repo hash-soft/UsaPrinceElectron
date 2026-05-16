@@ -13,7 +13,6 @@ files:
     to: ./
     filter:
       - assets
-      - js
       - js_config
       - icons
       - index.html
@@ -24,7 +23,6 @@ files:
       - package.json
   - filter:
       - assets
-      - js
       - js_config
       - icons
       - index.html
@@ -34,6 +32,8 @@ files:
       - index_config.css
       - package.json
       - '!node_modules'
+  - from: UsaPrinceJs/js_dev
+    to: js
 extraFiles:
   - saves
   - DebugMode.bat
